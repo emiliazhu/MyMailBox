@@ -62,10 +62,10 @@ public class MainActivity extends Activity
     static final int REQUEST_GOOGLE_PLAY_SERVICES = 1002;
     static final int REQUEST_PERMISSION_GET_ACCOUNTS = 1003;
 
-    private static final String BUTTON_TEXT = "Call Gmail API";
+    private static final String BUTTON_TEXT = "Login by Gmail ";
     private static final String PREF_ACCOUNT_NAME = "accountName";
     private static final String[] SCOPES = { GmailScopes.GMAIL_LABELS , GmailScopes.GMAIL_READONLY};
-    DatabaseHelper mydb;
+   // DatabaseHelper mydb;
     /**
      * Create the main activity.
      * @param savedInstanceState previously saved instance data.
@@ -73,8 +73,8 @@ public class MainActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-       mydb= new DatabaseHelper(this);
+      //  setContentView(R.layout.activity_main);
+     //  mydb= new DatabaseHelper(this);
         LinearLayout activityLayout = new LinearLayout(this);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -106,11 +106,11 @@ public class MainActivity extends Activity
         mOutputText.setVerticalScrollBarEnabled(true);
         mOutputText.setMovementMethod(new ScrollingMovementMethod());
         mOutputText.setText(
-                "Click the \'" + BUTTON_TEXT +"\' button to test the API.");
+                "Click the \'" + BUTTON_TEXT +"\' button to login.");
         activityLayout.addView(mOutputText);
 
         mProgress = new ProgressDialog(this);
-        mProgress.setMessage("Calling Gmail API ...");
+        mProgress.setMessage("Login by Gmail ...");
 
         setContentView(activityLayout);
 
@@ -333,7 +333,7 @@ public class MainActivity extends Activity
             JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
             mService = new com.google.api.services.gmail.Gmail.Builder(
                     transport, jsonFactory, credential)
-                    .setApplicationName("Gmail API Android Quickstart")
+                    .setApplicationName("MyMailBox")
                     .build();
         }
 
@@ -407,7 +407,7 @@ public class MainActivity extends Activity
             if (output == null || output.size() == 0) {
                 mOutputText.setText("No results returned.");
             } else {
-                output.add(0, "Data retrieved using the Gmail API:");
+                output.add(0, "Data retrieved using the Gmail:");
                 mOutputText.setText(TextUtils.join("\n", output));
               //  button_add=(Button)findViewById(R.id.button_add);
               //  AddData();
